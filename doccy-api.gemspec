@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Sentia Australia Pty Ltd"]
   spec.email         = ["support@doccyapp.com"]
   spec.summary       = "Ruby wrapper around Doccy API"
-  spec.description   = "Ruby wrapper around Doccy API for creating, sending and sharing documents. This api can be used if your a Doccy partner or just want to use Doccy in your app."
+  spec.description   = "Ruby wrapper around Doccy API for creating, sending and sharing documents. This api can be used if you're a Doccy partner or just want to use Doccy in your app."
   spec.homepage      = "https://www.doccyapp.com"
   spec.license       = "MIT"
 
