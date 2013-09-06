@@ -12,7 +12,7 @@ module Doccy
     self.endpoints = {
       :development  => "http://localhost:3000",
       :staging      => "http://staging.doccyapp.com",
-      :production   => "https://doccyapp.com"
+      :production   => "https://www.doccyapp.com"
     }
   
     self.prefix      = "/1"
