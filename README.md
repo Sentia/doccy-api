@@ -55,7 +55,15 @@ Returns a specific Template
 
 
 Uploads a Teamplate to Doccy
-    
+
+- Method: `post`
+- Request Params:
+  - template[name]: Name of template in Doccy * Required
+  - template[description]: Optional
+  - template[document_template]: Template file to upload * Required
+  
+- Request Example: no request content
+ 
     Doccy::Templates.upload(auth_token, template_params)
 
 
@@ -63,7 +71,13 @@ Uploads a Teamplate to Doccy
 
 Creates a Document from Template
 
-    Doccy::Documents.create(auth_token, template_id, document_params)
+- Method: `post`
+- Request Params:
+  - document[name]: Name of document * Required
+  - document[content][:placeholder]: Placeholde should be replaced by the values returned from template show action
+
+  Doccy::Documents.create(auth_token, template_id, document_params)
+  
     
 Returns a specific Document
   
