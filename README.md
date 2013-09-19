@@ -19,7 +19,7 @@ Or install it yourself as:
 
 Create a doccy_api.rb file in your config/initializers folder and add the following
 
-	Doccy::Config.mode = :production" # OPTIONAL defaults to staging.
+	Doccy::Config.mode = :production # OPTIONAL defaults to staging.
 	Doccy::Config.app_key = "YOUR-PARTNER-KEY" #OPTIONAL you only need this to create client accounts.
 
 
