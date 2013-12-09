@@ -86,8 +86,9 @@ Returns a specific Document
 
 Downloads a Document
     
-    Doccy::Documents.download(auth_token, template_id, document_id)
+    Doccy::Documents.download(auth_token, template_id, document_id, original=nil)
 
+- if you past through original=true as a param if will return the document in the original format with the merges rather then in PDF.
 
 ## <a name="emails"> Emails </a>
 

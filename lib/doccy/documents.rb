@@ -14,8 +14,12 @@ module Doccy
       response = HTTParty.get("#{Doccy::Config.url}/templates/#{template_id}/documents/#{document_id}.json", options)
     end
     
-    def self.download(auth_token, template_id, document_id)
-      options = { query: { auth_token: auth_token} }
+    def self.download(auth_token, template_id, document_id, original=nil)
+      if original
+        options = { query: { auth_token: auth_token, original: true} }
+      else
+        options = { query: { auth_token: auth_token} }
+      end
     
       response = HTTParty.get("#{Doccy::Config.url}/templates/#{template_id}/documents/#{document_id}/download.json", options)
     end
