@@ -1,4 +1,4 @@
-# Doccy::Api
+# Doccy
 Official Ruby wrapper for the https://www.doccyapp.com api
 
 ## Installation
