@@ -54,7 +54,7 @@ Returns a specific Template
     Doccy::Templates.get(auth_token, template_id)
 
 
-Uploads a Teamplate to Doccy
+Uploads a Template to Doccy
 
 - Method: `post`
 - Request Params:
