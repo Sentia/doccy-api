@@ -18,7 +18,7 @@ module Doccy
     self.prefix      = "/1"
     self.partner_key = nil
     self.app_secret  = nil
-    self.mode        = :staging
+    self.mode        = :production
     
     def self.url
       if self.mode == :production
