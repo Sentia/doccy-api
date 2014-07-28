@@ -3,7 +3,8 @@ module Doccy
   class Documents
     
     def self.create(auth_token, template_id, document_params)
-      options = { query: { auth_token: auth_token, document: document_params} }
+      # options = { query: { auth_token: auth_token, document: document_params} }
+      options = { body: { auth_token: auth_token, document: document_params} }
     
       response = HTTParty.post("#{Doccy::Config.url}/templates/#{template_id}/documents.json", options)
     end
