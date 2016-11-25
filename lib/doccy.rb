@@ -8,6 +8,7 @@ module Doccy
   autoload :Emails,             "doccy/emails"
   autoload :Session,            "doccy/session"
   autoload :Config,             "doccy/config"
+  autoload :Tfn,                "doccy/tfn"
   autoload :VERSION,            "doccy/version"
 
    

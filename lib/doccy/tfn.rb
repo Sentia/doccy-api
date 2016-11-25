@@ -1,0 +1,47 @@
+module Doccy
+
+  # A HTTP client for interfacing with the Doccy TFN API.
+  class Tfn
+
+    def initialize 
+      # Setup Faraday Connection
+      @conn = Faraday.new(:url => 'http://localhost:3000') do |faraday|
+        faraday.request  :multipart
+        faraday.request  :url_encoded             # form-encode POST params
+        faraday.response :logger                  # log requests to STDOUT
+        faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+      end
+
+      authenticate
+    end
+
+    # Retrieve Doccy authentication token.
+    def authenticate
+      response = @conn.post "/api/1/sessions", {email: ENV["DOCCY_USERNAME"], password: ENV["DOCCY_PASSWORD"]}
+      body = JSON.parse(response.body,symbolize_names: true)[:response]
+      @auth = body[:auth_token]
+    end
+
+    # Upload a pdf to the Doccy TFN Remover API.
+    def uploadTFN(input_file)
+      response = @conn.post "/api/1/tfn_jobs", {auth_token: @auth, input_file: Faraday::UploadIO.new(input_file, 'application/pdf')}
+      return JSON.parse(response.body,symbolize_names: true)[:response][:id]
+    end
+
+    # Pings Doccy for the status of a document.
+    def pingTFN(id)
+      response = @conn.get "api/1/tfn_jobs/#{id}", {auth_token: @auth}
+      return JSON.parse(response.body, symbolize_names: true)[:response]
+    end
+
+    # Downloads a completed document from Doccy, if it exists and the status is processed.
+    def downloadTFN(id)
+      response = @conn.get "api/1/tfn_jobs/#{id}/download", {auth_token: @auth}
+      return response.body
+      #File.open('dunno.pdf', 'w') {|f| f.write(response.body)}
+    end
+
+
+  end
+    
+end
