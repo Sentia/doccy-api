@@ -41,6 +41,11 @@ module Doccy
       #File.open('dunno.pdf', 'w') {|f| f.write(response.body)}
     end
 
+    # Removes images and job from Doccy server
+    def removeTFN(id)
+      response = @conn.delete "api/1/tfn_jobs/#{id}", {auth_token: @auth}
+    end
+
 
   end
     
