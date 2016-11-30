@@ -3,9 +3,9 @@ module Doccy
   # A HTTP client for interfacing with the Doccy TFN API.
   class Tfn
 
-    def initialize 
+    def initialize(base_url)
       # Setup Faraday Connection
-      @conn = Faraday.new(:url => 'http://localhost:3000') do |faraday|
+      @conn = Faraday.new(:url => base_url) do |faraday|
         faraday.request  :multipart
         faraday.request  :url_encoded             # form-encode POST params
         faraday.response :logger                  # log requests to STDOUT
