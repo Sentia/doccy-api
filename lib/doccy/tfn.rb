@@ -3,7 +3,7 @@ module Doccy
   # A HTTP client for interfacing with the Doccy TFN API.
   class Tfn
 
-    def initialize(base_url)
+    def initialize(base_url, auth_token = nil)
       # Setup Faraday Connection
       @conn = Faraday.new(:url => base_url) do |faraday|
         faraday.request  :multipart
@@ -12,7 +12,11 @@ module Doccy
         faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
       end
 
-      authenticate
+      if auth_token
+        @auth = auth_token
+      else 
+        authenticate
+      end
     end
 
     # Retrieve Doccy authentication token.
@@ -38,7 +42,7 @@ module Doccy
     def downloadTFN(id)
       response = @conn.get "api/1/tfn_jobs/#{id}/download", {auth_token: @auth}
       return response.body
-      #File.open('dunno.pdf', 'w') {|f| f.write(response.body)}
+      #File.open('out.pdf', 'w') {|f| f.write(response.body)}
     end
 
     # Removes images and job from Doccy server
