@@ -10,6 +10,7 @@ module Doccy
   autoload :Config,             "doccy/config"
   autoload :Tfn,                "doccy/tfn"
   autoload :VERSION,            "doccy/version"
+  autoload :ResponseHandler,    "doccy/response_handler"
 
    
   def self.logger

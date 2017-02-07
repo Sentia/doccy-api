@@ -29,27 +29,27 @@ module Doccy
     # Upload a pdf to the Doccy TFN Remover API.
     def uploadTFN(input_file)
       response = @conn.post "/api/1/tfn_jobs", {auth_token: @auth, input_file: Faraday::UploadIO.new(input_file, 'application/pdf')}
-      return JSON.parse(response.body,symbolize_names: true)[:response]
+      return Doccy::ResponseHandler.new(response)
     end
 
     # Pings Doccy for the status of a document.
     def pingTFN(id)
       response = @conn.get "api/1/tfn_jobs/#{id}", {auth_token: @auth}
-      return JSON.parse(response.body, symbolize_names: true)[:response]
+      return Doccy::ResponseHandler.new(response)
     end
 
     # Downloads a completed document from Doccy, if it exists and the status is processed.
     def downloadTFN(id)
       response = @conn.get "api/1/tfn_jobs/#{id}/download", {auth_token: @auth}
-      return response.body
+      return Doccy::ResponseHandler.new(response)
       #File.open('out.pdf', 'w') {|f| f.write(response.body)}
     end
 
     # Removes images and job from Doccy server
     def removeTFN(id)
       response = @conn.delete "api/1/tfn_jobs/#{id}", {auth_token: @auth}
+      return Doccy::ResponseHandler.new(response)
     end
-
 
   end
     
