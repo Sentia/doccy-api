@@ -17,6 +17,10 @@ module Doccy
       @response.response_headers
     end
 
+    def raw_body
+      @response.body
+    end
+
     def body
       ::JSON.parse(@response.body, symbolize_names: true)
     end
